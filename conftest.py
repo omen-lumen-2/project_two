@@ -26,7 +26,10 @@ def app(request):
     browser = request.config.getoption('--browser')
     web_config = load_config(request.config.getoption('--config_file'))['web']
     if application is None or application.is_not_valid():
-        application = Application(browser=browser, base_url=web_config['base_url'])
+        application = Application(browser=browser,
+                                  base_url=web_config['base_url'],
+                                  login_sudo=web_config['admin_login'],
+                                  password_sudo=web_config['admin_password'])
     application.session.ensure_login(login=web_config['admin_login'], password=web_config['admin_password'])
     return application
 

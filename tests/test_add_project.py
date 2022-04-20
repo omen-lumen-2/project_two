@@ -14,5 +14,15 @@ def test_add_new_project(app):
 
     assert sorted(old_projects, key=Project.id_or_max) == sorted(new_projects, key=Project.id_or_max)
 
+def test_add_new_project_with_check_through_soap(app):
+    old_projects = app.soap_helper.get_project_list_for_user(app.login_sudo, app.password_sudo)
+
+    expected_project = Project(name=f'Тест имя проекта{random_int(1,1000)}')
+    app.project_helper.create(project=expected_project)
+
+    old_projects.append(expected_project.set_default_value())
+    new_projects = app.soap_helper.get_project_list_for_user(app.login_sudo, app.password_sudo)
+
+    assert sorted(old_projects, key=Project.id_or_max) == sorted(new_projects, key=Project.id_or_max)
 
 

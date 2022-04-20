@@ -1,7 +1,7 @@
 from sys import maxsize
 
-status = ["в разработке", "выпущен", "стабильный", "устарел"]
-view_state = ["публичный", "приватный"]
+status = {10: "в разработке", 30: "выпущен", 50: "стабильный", 70: "устарел"}
+view_state = {10: "публичный", 50: "приватный"}
 
 class Project:
     def __init__(self, id=None, name=None, state=None, is_active=None, use_global_setting=None, visible=None, description=None):
@@ -9,7 +9,7 @@ class Project:
         self.name = name
         self.state = state
         self.is_active = is_active  # не участвует при создании проекта
-        self.use_global_setting = use_global_setting  # отсутствует на с странице проектов
+        self.use_global_setting = use_global_setting  # отсутствует на странице проектов
         self.visible = visible
         self.description = description
 
