@@ -30,6 +30,7 @@ def app(request):
     application.session.ensure_login(login=web_config['admin_login'], password=web_config['admin_password'])
     return application
 
+
 @pytest.fixture(scope='session', autouse=True)
 def stop(request):
     def _inner():

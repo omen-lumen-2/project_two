@@ -54,7 +54,7 @@ class ProjectHelper:
 
     def get_count_project(self):
         wd = self.app.wd
-        return len(wd.find_elements_by_xpath(f"//a[contains(@href,'manage_proj_edit_page.php?project_id=')]"))
+        return len(wd.find_elements_by_xpath("//a[contains(@href,'manage_proj_edit_page.php?project_id=')]"))
 
     def get_project_list(self):
         if self.project_cash is None:
