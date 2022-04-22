@@ -18,11 +18,11 @@ def test_delete_project(app):
 
 def test_delete_project_with_check_through_soap(app):
     app.project_helper.project_must_exist()
-    raw_projects = app.soap_helper.get_project_list_for_user(app.login_sudo, app.password_sudo)
+    raw_projects = app.soap_helper.get_project_list_for_user()
     project = choice(raw_projects)
 
     app.project_helper.delete_project_by_id(id=project.id)
 
-    update_projects = app.soap_helper.get_project_list_for_user(app.login_sudo, app.password_sudo)
+    update_projects = app.soap_helper.get_project_list_for_user()
     raw_projects.remove(project)
     assert sorted(raw_projects, key=Project.id_or_max) == sorted(update_projects, key=Project.id_or_max)
